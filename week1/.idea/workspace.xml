@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="1747cb63-d030-4560-8666-c709671dcbad" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +28,6 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -40,45 +42,6 @@
       <recent name="C:\Users\Lenovo\Desktop\KBTU\3rd course\2nd semester\scala2021\week1\src\main\scala" />
     </key>
   </component>
-  <component name="SbtLocalSettings">
-    <option name="availableProjects">
-      <map>
-        <entry>
-          <key>
-            <ExternalProjectPojo>
-              <option name="name" value="week1" />
-              <option name="path" value="$PROJECT_DIR$" />
-            </ExternalProjectPojo>
-          </key>
-          <value>
-            <list>
-              <ExternalProjectPojo>
-                <option name="name" value="week1 [file:/C:/Users/Lenovo/Desktop/KBTU/3rd%20course/2nd%20semester/scala2021/week1/]" />
-                <option name="path" value="$PROJECT_DIR$" />
-              </ExternalProjectPojo>
-              <ExternalProjectPojo>
-                <option name="name" value="week1-build" />
-                <option name="path" value="$PROJECT_DIR$/project" />
-              </ExternalProjectPojo>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="modificationStamps">
-      <map>
-        <entry key="$PROJECT_DIR$" value="3225416040971" />
-        <entry key="$PROJECT_DIR$/build.sbt" value="4289847210" />
-        <entry key="$PROJECT_DIR$/project/build.properties" value="2513440544" />
-      </map>
-    </option>
-    <option name="projectSyncType">
-      <map>
-        <entry key="$PROJECT_DIR$/../../SCALA" value="PREVIEW" />
-        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
-      </map>
-    </option>
-  </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
       <list>
@@ -91,6 +54,7 @@
       </list>
     </option>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -103,29 +67,16 @@
       <updated>1612708020461</updated>
       <workItem from="1612708024526" duration="785000" />
       <workItem from="1612709730051" duration="378000" />
+      <workItem from="1613461150480" duration="143000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$/../../../../.." />
     </ignored-roots>
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="421" y="86" key="FileChooserDialogImpl" timestamp="1612708420016">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="421" y="86" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1612708420016" />
-    <state x="144" y="0" key="SettingsEditor" timestamp="1612709770995">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="144" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1612709770995" />
-    <state x="349" y="170" key="com.intellij.ide.util.TipDialog" timestamp="1612709729323">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="349" y="170" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1612709729323" />
   </component>
 </project>

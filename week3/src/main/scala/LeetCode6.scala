@@ -17,9 +17,6 @@ object LeetCode6 extends App {
       }
 
       k=k*(-1)
-//      result(index)=(-1*n)
-//      result(index)=(1*n)
-//      n = n - 2
       index = index + 1
     }
 
@@ -31,5 +28,6 @@ object LeetCode6 extends App {
     for (i <- res)
       print(i + " ")
   }
+
   test()
 }

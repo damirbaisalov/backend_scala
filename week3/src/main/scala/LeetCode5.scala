@@ -21,7 +21,6 @@ object LeetCode5 extends App {
       }
     }
 
-
     result
   }
 

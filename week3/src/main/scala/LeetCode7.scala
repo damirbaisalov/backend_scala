@@ -3,7 +3,7 @@ object LeetCode7 extends App {
   def kWeakestRows(mat: Array[Array[Int]], k: Int): Array[Int] = {
     val y = mat.length
     val x = mat(0).length
-    var kix = 0
+    var index = 0
 
     var vis: Array[Int] = new Array[Int](y)
     var result: Array[Int] = new Array[Int](k)
@@ -11,11 +11,11 @@ object LeetCode7 extends App {
     for (j <- 0 to x) {
       for (i <- 0 until y) {
         if (vis(i) == 0 && (j == x || mat(i)(j) == 0)) {
-          result(kix)= i
-          kix+=1
+          result(index)= i
+          index+=1
           vis(i)+=1
         }
-        if (kix == k) {
+        if (index == k) {
           return result
         }
       }

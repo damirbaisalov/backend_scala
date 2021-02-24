@@ -10,13 +10,21 @@ class Calculator() {
       if (userInput.isEmpty) {
         return result
       } else {
-        if (userInput(index).isDigit) {
+        if (userInput(index).isDigit || userInput(index)=='.') {
+          currentResult+=userInput(index)
+          index+=1
+
+          if (userInput(index)=='.') {
+            currentResult+=userInput(index)
+            index+=1
+          }
+
           while (userInput(index).isDigit) {
             currentResult+=userInput(index)
             index+=1
           }
           if (!result.isEmpty)
-            result = calculate(result.toInt, operation, currentResult.toInt)
+            result = calculate(result.toDouble, operation, currentResult.toDouble)
           else
             result = currentResult
           currentResult = ""
@@ -30,7 +38,7 @@ class Calculator() {
     result
   }
 
-  def calculate(num1: Int, operation: Char, num2: Int): String = {
+  def calculate(num1: Double, operation: Char, num2: Double): String = {
    try {
      operation match {
       case '+' => (num1+num2).toString

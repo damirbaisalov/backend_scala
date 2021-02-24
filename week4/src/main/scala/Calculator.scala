@@ -1,8 +1,8 @@
-class Calculator(userInput: String) {
+class Calculator() {
 
-  def readSymbols(): String ={
+  def readSymbols(userInput: String): String ={
     var result = ""
-    var temp = ""
+    var currentResult = ""
     var operation = ' '
     var index = 0
 
@@ -12,17 +12,16 @@ class Calculator(userInput: String) {
       } else {
         if (userInput(index).isDigit) {
           while (userInput(index).isDigit) {
-            temp+=userInput(index)
+            currentResult+=userInput(index)
             index+=1
           }
-          if (result.isEmpty) {
-            result = temp
-          }
+          if (!result.isEmpty)
+            result = calculate(result.toInt, operation, currentResult.toInt)
           else
-            result = calculate(result.toInt, operation, temp.toInt)
-          temp = ""
+            result = currentResult
+          currentResult = ""
         }
-        if (userInput(index)=='+' || userInput(index)=='-' || userInput(index)=='*' || userInput(index)=="/")
+        if (checkOperation(userInput(index)))
           operation = userInput(index)
       }
       index+=1
@@ -44,4 +43,10 @@ class Calculator(userInput: String) {
    }
   }
 
+  def checkOperation(operation: Char): Boolean = {
+    if (operation == '+' || operation == '-' || operation == '*' || operation == '/')
+      true
+    else
+      false
+  }
 }

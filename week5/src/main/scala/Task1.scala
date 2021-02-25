@@ -1,6 +1,15 @@
 object Task1 extends App {
-  
+
   def maxProduct(nums: Array[Int]): Int = {
+
+    val numsSorted = nums.sorted
+    val result = (numsSorted(numsSorted.length-2)-1)*(numsSorted(numsSorted.length-1)-1)
+
+    result
+  }
+
+
+  def maxProduct2(nums: Array[Int]): Int = {
     var max1 = 0
     var max2 = 0
 
@@ -14,6 +23,7 @@ object Task1 extends App {
     }
 
     val result = (max1-1)*(max2-1)
+
     result
   }
 

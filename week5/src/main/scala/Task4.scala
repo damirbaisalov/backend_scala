@@ -1,5 +1,5 @@
 object Task4 extends App {
-  
+
   def findPairs(nums: Array[Int], k: Int): Int = {
 
     var result = Set[(Int, Int)]()

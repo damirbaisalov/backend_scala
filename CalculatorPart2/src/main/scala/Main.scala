@@ -25,7 +25,7 @@ object Main{
     val system: ActorSystem[ReadFromInput] =
       ActorSystem(Main(), "MainCalculator")
 
-    system ! ReadFromInput("3+3=")
+    system ! ReadFromInput("6:3=")
 
   }
 }

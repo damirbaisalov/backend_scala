@@ -45,6 +45,7 @@ class Calculator() {
         case '-' => (num1-num2).toString
         case '*' => (num1*num2).toString
         case '/' => (num1/num2).toString
+        case ':' => (num1/num2).toString
       }
     } catch {
       case e: Exception => e.toString
@@ -52,7 +53,7 @@ class Calculator() {
   }
 
   def checkOperation(operation: Char): Boolean = {
-    if (operation == '+' || operation == '-' || operation == '*' || operation == '/')
+    if (operation == '+' || operation == '-' || operation == '*' || operation == '/' || operation==':')
       true
     else
       false

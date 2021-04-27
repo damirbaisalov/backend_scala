@@ -6,4 +6,6 @@ trait TodoRepository {
   def done(): Future[Seq[Todo]]
 
   def pending(): Future[Seq[Todo]]
+
+  def create(createTodo: CreateTodo):Future[Todo]
 }

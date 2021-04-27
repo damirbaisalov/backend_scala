@@ -8,7 +8,12 @@ trait  Router {
   def route:Route
 }
 
-class MyRouter(todoRepository: TodoRepository)(implicit system: ActorSystem[_],  ex:ExecutionContext) extends Router with  Directives {
+class MyRouter(todoRepository: TodoRepository)(implicit system: ActorSystem[_],  ex:ExecutionContext)
+  extends Router
+  with  Directives
+  with TodoDirectives
+  with ValidatorDirectives {
+
   import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport._
   import io.circe.generic.auto._
 
@@ -18,11 +23,22 @@ class MyRouter(todoRepository: TodoRepository)(implicit system: ActorSystem[_], 
         complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "pong"))
       }
     },
-    path("todos"){
+    path("todos") {
       pathEndOrSingleSlash {
-        get {
-          complete(todoRepository.all())
-        }
+        concat(
+          get {
+            handleWithGeneric(todoRepository.all()) {
+              todos => complete(todos)
+            }
+          },
+          post {
+            entity(as[CreateTodo]) { createTodo =>
+                validateWith(CreateTodoValidator)(createTodo){
+                  handleWithGeneric(todoRepository.create(createTodo)) { todo => complete(todo)}
+                }
+            }
+          }
+        )
       }
     }
   )

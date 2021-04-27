@@ -8,11 +8,16 @@ object Main extends App {
 
   val rootBehavior= Behaviors.setup[Nothing] { context =>
 
-    val router = new MyRouter()(context.system, context.executionContext)
+    implicit val ec = context.executionContext
+    implicit val sys = context.system
+
+    val calculator = new InMemoryCalculatorRepository()
+    val router = new MyRouter(calculator)(context.system, context.executionContext)
 
     MyServer.startHttpServer(router.route)(context.system, context.executionContext)
     Behaviors.empty
   }
+
   val system = ActorSystem[Nothing](rootBehavior, "HelloAkkaHttpServer")
 
 }

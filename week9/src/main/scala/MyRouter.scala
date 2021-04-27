@@ -8,12 +8,21 @@ trait  Router {
   def route:Route
 }
 
-class MyRouter()(implicit system: ActorSystem[_],  ex:ExecutionContext) extends Router with  Directives {
+class MyRouter(calculatorRepository: CalculatorRepository)(implicit system: ActorSystem[_],  ex:ExecutionContext) extends Router with  Directives {
 
   override def route = concat(
     path("ping") {
       get {
         complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "pong"))
+      }
+    },
+    path("calc") {
+      get {
+        parameters('exp.as[String]) { exp =>
+          complete {
+            HttpEntity(ContentTypes.`text/html(UTF-8)`, calculatorRepository.calculate(exp))
+          }
+        }
       }
     }
   )

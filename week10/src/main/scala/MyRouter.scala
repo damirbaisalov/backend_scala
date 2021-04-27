@@ -34,7 +34,7 @@ class MyRouter(todoRepository: TodoRepository)(implicit system: ActorSystem[_], 
           post {
             entity(as[CreateTodo]) { createTodo =>
                 validateWith(CreateTodoValidator)(createTodo){
-                  handleWithGeneric(todoRepository.create(createTodo)) { todo => complete(todo)}
+                  handle2(todoRepository.create(createTodo)) { todo => complete(todo) }
                 }
             }
           }

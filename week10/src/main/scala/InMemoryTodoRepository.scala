@@ -12,15 +12,21 @@ class InMemoryTodoRepository(initialTodos:Seq[Todo] = Seq.empty)(implicit ec:Exe
 
   override def pending(): Future[Seq[Todo]] = Future.successful(todos.filterNot(_.done))
 
-  override def create(createTodo: CreateTodo): Future[Todo] =
-    Future.successful {
-      val todo = Todo(
-        id = UUID.randomUUID().toString,
-        title = createTodo.title,
-        description = createTodo.description,
-        done = false
-      )
-      todos = todos :+ todo
-      todo
+  override def create(createTodo: CreateTodo): Future[Todo] = {
+    todos.find(_.title.equals(createTodo.title)) match {
+      case Some(_) =>
+        Future.failed(TitleIsExist(createTodo))
+      case None =>
+        Future.successful {
+          val todo = Todo(
+            id = UUID.randomUUID().toString,
+            title = createTodo.title,
+            description = createTodo.description,
+            done = false
+          )
+          todos = todos :+ todo
+          todo
+        }
     }
+  }
 }

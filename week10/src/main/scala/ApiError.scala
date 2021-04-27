@@ -11,5 +11,5 @@ object ApiError {
   //task1
   val emptyDescriptionField: ApiError = new ApiError(StatusCodes.BadRequest, message = "Empty description")
   //task2
-  val duplicateTitleField: ApiError = new ApiError(StatusCodes.BadRequest, "Title already exists.")
+  val duplicateTitleField: ApiError = new ApiError(StatusCodes.BadRequest, message= "Title is exist")
 }

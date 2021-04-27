@@ -16,6 +16,18 @@ trait TodoDirectives extends Directives {
       complete(apiError.statusCode, apiError.message)
   }
 
+  def handle2[T](f: Future[T]): Directive1[T] = onComplete(f) flatMap {
+    case Success(t) =>
+      provide(t)
+    case Failure(error) =>
+      val apiError = error match {
+        case sameTitle: TitleIsExist => ApiError.duplicateTitleField
+        case _ => ApiError.generic
+      }
+      complete(apiError.statusCode, apiError.message)
+  }
+
+
   def handleWithGeneric[T](f: Future[T]): Directive1[T] =
     handle[T](f)(_ => ApiError.generic)
 

@@ -17,29 +17,31 @@ class MyRouter(todoRepository: TodoRepository)(implicit system: ActorSystem[_], 
   import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport._
   import io.circe.generic.auto._
 
-  override def route = concat(
-    path("ping") {
+  override def route = pathPrefix("todos") {
+    pathEndOrSingleSlash {
       get {
-        complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "pong"))
-      }
-    },
-    path("todos") {
-      pathEndOrSingleSlash {
-        concat(
-          get {
-            handleWithGeneric(todoRepository.all()) {
-              todos => complete(todos)
-            }
-          },
-          post {
-            entity(as[CreateTodo]) { createTodo =>
-                validateWith(CreateTodoValidator)(createTodo){
-                  handle2(todoRepository.create(createTodo)) { todo => complete(todo) }
-                }
-            }
+        handleWithGeneric(todoRepository.all()) {
+          todos => complete(todos)
+        }
+      } ~ {
+        entity(as[CreateTodo]) { createTodo =>
+          validateWith(CreateTodoValidator)(createTodo){
+            handle2(todoRepository.create(createTodo)) { todo => complete(todo) }
           }
-        )
+        }
+      }
+    } ~ path("done") {
+      get {
+        handleWithGeneric(todoRepository.done()) {
+          todos => complete(todos)
+        }
+      }
+    } ~ path("pending") {
+      get {
+        handleWithGeneric(todoRepository.pending()) {
+          todos => complete(todos)
+        }
       }
     }
-  )
+  }
 }

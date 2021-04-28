@@ -9,4 +9,6 @@ object ApiError {
 
   val emptyTitleErrorField: ApiError = new ApiError(StatusCodes.BadRequest, "Title field must not be empty.")
 
+  def todoNotFound(id: String): ApiError =
+    new ApiError(StatusCodes.NotFound, message = s"The todo with id $id could not be found.")
 }

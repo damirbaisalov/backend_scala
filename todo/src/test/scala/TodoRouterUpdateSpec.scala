@@ -52,9 +52,9 @@ class TodoRouterUpdateSpec extends WordSpec with Matchers with ScalatestRouteTes
       val router = new TodoRouter(repository)
 
       Put(s"/todos/$todoId", testUpdateTodo.copy(title = Some(""))) ~> router.route ~> check {
-        status shouldBe ApiError.emptyTitleField.statusCode
+        status shouldBe ApiError.emptyTitleErrorField.statusCode
         val resp = responseAs[String]
-        resp shouldBe ApiError.emptyTitleField.message
+        resp shouldBe ApiError.emptyTitleErrorField.message
       }
     }
 

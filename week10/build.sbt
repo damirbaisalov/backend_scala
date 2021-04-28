@@ -11,7 +11,7 @@ scalaVersion := "2.13.5"
 scalaVersion := "2.12.6"
 
 dockerBaseImage := "openjdk:8-jre-alpine"
-packageName in Docker := "todo"
+packageName in Docker := "week10"
 
 val akkaVersion = "2.6.8"
 val akkaHttpVersion = "10.2.4"
@@ -39,7 +39,7 @@ libraryDependencies ++= Seq(
 
 dockerCommands := dockerCommands.value.map {
   case ExecCmd("CMD", _@_*) =>
-    ExecCmd("CMD", "/opt/docker/bin/todo")
+    ExecCmd("CMD", "/opt/docker/bin/week10")
   case other =>
     other
 }

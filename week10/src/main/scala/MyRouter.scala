@@ -23,23 +23,40 @@ class MyRouter(todoRepository: TodoRepository)(implicit system: ActorSystem[_], 
         handleWithGeneric(todoRepository.all()) {
           todos => complete(todos)
         }
-      } ~ {
+      } ~ post {
         entity(as[CreateTodo]) { createTodo =>
-          validateWith(CreateTodoValidator)(createTodo){
-            handle2(todoRepository.create(createTodo)) { todo => complete(todo) }
+          validateWith(CreateTodoValidator)(createTodo) {
+            handleForTitle(todoRepository.create(createTodo)) { todo =>
+              complete(todo)
+            }
+          }
+        }
+      }
+    } ~ path(Segment) { id: String =>
+      put {
+        entity(as[UpdateTodo]) { updateTodo =>
+          validateWith(UpdateTodoValidator)(updateTodo) {
+            handle(todoRepository.update(id, updateTodo)) {
+              case TodoRepository.TodoNotFound(_) =>
+                ApiError.todoNotFound(id)
+              case _ =>
+                ApiError.generic
+            } { todo =>
+              complete(todo)
+            }
           }
         }
       }
     } ~ path("done") {
       get {
-        handleWithGeneric(todoRepository.done()) {
-          todos => complete(todos)
+        handleWithGeneric(todoRepository.done()) { todos =>
+          complete(todos)
         }
       }
     } ~ path("pending") {
       get {
-        handleWithGeneric(todoRepository.pending()) {
-          todos => complete(todos)
+        handleWithGeneric(todoRepository.pending()) { todos =>
+          complete(todos)
         }
       }
     }

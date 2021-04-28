@@ -1,6 +1,7 @@
+import TodoRepository.TitleIsExist
+
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
-
 import akka.http.scaladsl.server.{Directive1, Directives}
 
 trait TodoDirectives extends Directives {
@@ -16,7 +17,7 @@ trait TodoDirectives extends Directives {
       complete(apiError.statusCode, apiError.message)
   }
 
-  def handle2[T](f: Future[T]): Directive1[T] = onComplete(f) flatMap {
+  def handleForTitle[T](f: Future[T]): Directive1[T] = onComplete(f) flatMap {
     case Success(t) =>
       provide(t)
     case Failure(error) =>
@@ -26,7 +27,6 @@ trait TodoDirectives extends Directives {
       }
       complete(apiError.statusCode, apiError.message)
   }
-
 
   def handleWithGeneric[T](f: Future[T]): Directive1[T] =
     handle[T](f)(_ => ApiError.generic)

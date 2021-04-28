@@ -9,7 +9,10 @@ object ApiError {
   val emptyTitleField: ApiError = new ApiError(StatusCodes.BadRequest, message = "Empty title.")
 
   //task1
-  val emptyDescriptionField: ApiError = new ApiError(StatusCodes.BadRequest, message = "Empty description")
+  val emptyDescriptionField: ApiError = new ApiError(StatusCodes.BadRequest, message = "Empty description.")
   //task2
-  val duplicateTitleField: ApiError = new ApiError(StatusCodes.BadRequest, message= "Title is exist")
+  val duplicateTitleField: ApiError = new ApiError(StatusCodes.BadRequest, message= "Title is already exists.")
+
+  def todoNotFound(id: String): ApiError =
+    new ApiError(StatusCodes.NotFound, message = s"The todo with id $id could not be found.")
 }

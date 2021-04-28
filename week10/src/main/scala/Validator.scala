@@ -10,4 +10,10 @@ object CreateTodoValidator extends Validator[CreateTodo] {
   }
 }
 
-//todo: update validator
+object UpdateTodoValidator extends Validator[UpdateTodo] {
+  override def validate(updateTodo: UpdateTodo): Option[ApiError] =
+    if (updateTodo.title.exists(_.isEmpty))
+      Some(ApiError.emptyTitleField)
+    else
+      None
+}

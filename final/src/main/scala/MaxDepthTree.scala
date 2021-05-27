@@ -7,13 +7,15 @@ object MaxDepthTree extends App {
 
   def maxDepth(root: Node): Int = {
 
-    if (root == null) 0
+    if (root == null)
+      0
+    else {
+      var maxDepthCnt = 0
+      for (it <- root.children){
+        maxDepthCnt = Math.max(maxDepthCnt, maxDepth(it))
+      }
 
-    var maxDepthCnt = 0
-    for (it <- root.children){
-      maxDepthCnt = Math.max(maxDepthCnt, maxDepth(it))
+      maxDepthCnt+1
     }
-
-    maxDepthCnt+1
   }
 }

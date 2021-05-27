@@ -3,6 +3,7 @@ object CanMakeArithmeticProgression extends App{
   def canMakeArithmeticProgression(arr: Array[Int]): Boolean = {
 
     val sortedArr = arr.sorted
+    //difference value which is constant
     val d = sortedArr(1)-sortedArr(0)
 
     for (i <- 2 until sortedArr.length){
